@@ -13,10 +13,10 @@ namespace FirstLaboratory
         private readonly int _row;
         private readonly int _amountElements;
 
-        public ArrayGenerator()
-        {
-            _column = Random.Shared.Next(2, 11);
-        }
+        public string timeOneDimensionArray { get; set; }
+        public string timeTwoDimensionArray { get; set; }
+        public string timeJaggedArray { get; set; }
+
         public ArrayGenerator(int column, int row)
         {
             _column = column;
@@ -34,7 +34,7 @@ namespace FirstLaboratory
                 array[i] = Random.Shared.Next(-5, 5);
             }
             stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedTicks);
+            timeOneDimensionArray = stopwatch.ElapsedTicks.ToString();
             return array;
         }
 
@@ -51,7 +51,7 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedTicks);
+            timeTwoDimensionArray = stopwatch.ElapsedTicks.ToString();
             return array;
         }
         public int [][] JaggedGenerate()
@@ -68,7 +68,7 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedTicks);
+            timeJaggedArray = stopwatch.ElapsedTicks.ToString();
             return generateArray;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using FirstLaboratory;
+using FirstLaboratory.Option1;
 using System.Linq;
 
 var person = new Person(
@@ -20,8 +21,8 @@ void ConsoleWritePerson(Person person)
     Console.WriteLine(person.DataTime);
 }
 
-Console.WriteLine("Введите количество столбцов и строк массива через разделительный знак:");
-string strColumnAndRow = Console.ReadLine();
+//Console.WriteLine("Введите количество столбцов и строк массива через разделительный знак:");
+//string strColumnAndRow = Console.ReadLine();
 //Размер массива, где первое число количество столбцов, а второе число строк
 /*int[] sizeArray = ArraySize(strColumnAndRow);
 
@@ -44,7 +45,20 @@ var jagged = newTest.JaggedGenerate();
 PrintJaggedArray(jagged);
 PrintOneArray(one);
 PrintTwoArray(two);
+Console.WriteLine($"Время заполнения: Одномерного({newTest.timeOneDimensionArray}), Двумерного({newTest.timeTwoDimensionArray}), Ступенчатого({newTest.timeJaggedArray})");
 
+var student = new Student();
+Console.WriteLine(student.ToShortString());
+Exam[] exam = new Exam[]
+{
+    new Exam("World", 9, new DateTime(2022,01,17)),
+    new Exam("Mif", 4, new DateTime(2022,01,18)),
+    new Exam("Country", 5, new DateTime(2022,01,19))
+};
+Console.WriteLine(student.Exams.Length + exam.Length);
+student.AddExem(exam);
+Console.WriteLine(student.ToShortString());
+Console.WriteLine(student.ToString());
 
 bool DataValidation(int[] array)
 {

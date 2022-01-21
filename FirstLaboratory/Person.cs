@@ -6,51 +6,71 @@ using System.Threading.Tasks;
 
 namespace FirstLaboratory
 {
-    internal class Person
+    public class Person
     {
-        private string name;
-        private string surname;
-        private DateTime dataTime;
+        private string _name;
+        private string _surname;
+        private DateTime _dataTime;
 
         public Person(string name, string surname, DateTime dateTime)
         {
-            this.name = name;   
-            this.surname = surname;
-            this.dataTime = dateTime;
+            _name = name;   
+            _surname = surname;
+            _dataTime = dateTime;
         }
         public Person()
         {
 
         }
-        public string Name { get; set; }
-        public string Surname { get; set;}
-        public DateTime DataTime
+        public string Name
         {
-            get { return dataTime; }
+            get
+            {
+                return _name;
+            }
             set
             {
-                dataTime = value;
+                _name = value;
+            }
+        }
+        public string Surname 
+        {
+            get
+            {
+                return _surname;
+            }
+            set
+            {
+                _surname = value;
+            }
+        }
+        public DateTime DataTime
+        {
+            get { return _dataTime; }
+            set
+            {
+                _dataTime = value;
             }
         }
         public int Year
         {
             get 
             {
-                return (int)dataTime.Year;
+                return (int)_dataTime.Year;
             }
             set
             {
-                DateTime newDateTime = new DateTime(value, dataTime.Month, dataTime.Day);
-                dataTime = newDateTime;
+                DateTime newDateTime = new DateTime(value, _dataTime.Month, _dataTime.Day);
+                _dataTime = newDateTime;
             }
         }
         public override string ToString()
         {
-            return $"Имя:{name}; Фамилия:{surname}; Дата рождения:{dataTime}".ToString();
+            return $"Имя:{_name}; Фамилия:{_surname}; Дата рождения:{_dataTime}".ToString();
         }        
         public string ToShortString()
         {
-            return $"Имя:{name}; Фамилия:{surname}".ToString();
+            return $"Имя:{_name}; Фамилия:{_surname}".ToString();
         }
     }
 }
