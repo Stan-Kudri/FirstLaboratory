@@ -67,8 +67,15 @@ namespace FirstLaboratory.Option1
         public void AddExam(params Exam[] addExams)
         {
             var newExem = new Exam[_exams.Length + addExams.Length];
-            Array.Copy(_exams, newExem, _exams.Length);
-            Array.Copy(addExams, 0, newExem, 1, addExams.Length);
+            if(_exams.Length == 0)
+            {
+                Array.Copy(addExams, newExem, addExams.Length);
+            }
+            else
+            {
+                Array.Copy(_exams, newExem, _exams.Length);
+                Array.Copy(addExams, 0, newExem, 1, addExams.Length);
+            }
             Exams = newExem;
         }
 
