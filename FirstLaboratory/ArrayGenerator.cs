@@ -13,10 +13,6 @@ namespace FirstLaboratory
         private readonly int _row;
         private readonly int _amountElements;
 
-        public string timeOneDimensionArray { get; set; }
-        public string timeTwoDimensionArray { get; set; }
-        public string timeJaggedArray { get; set; }
-
         public ArrayGenerator(int column, int row)
         {
             _column = column;
@@ -34,7 +30,7 @@ namespace FirstLaboratory
                 array[i] = Random.Shared.Next(-5, 5);
             }
             stopwatch.Stop();
-            timeOneDimensionArray = stopwatch.ElapsedTicks.ToString();
+            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");            
             return array;
         }
 
@@ -51,9 +47,10 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            timeTwoDimensionArray = stopwatch.ElapsedTicks.ToString();
+            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");
             return array;
         }
+
         public int [][] JaggedGenerate()
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -68,7 +65,7 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            timeJaggedArray = stopwatch.ElapsedTicks.ToString();
+            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");
             return generateArray;
         }
     }

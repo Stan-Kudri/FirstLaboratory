@@ -11,17 +11,6 @@ namespace FirstLaboratory
         private string _name;
         private string _surname;
         private DateTime _dataTime;
-
-        public Person(string name, string surname, DateTime dateTime)
-        {
-            _name = name;   
-            _surname = surname;
-            _dataTime = dateTime;
-        }
-        public Person()
-        {
-
-        }
         public string Name
         {
             get
@@ -33,7 +22,8 @@ namespace FirstLaboratory
                 _name = value;
             }
         }
-        public string Surname 
+
+        public string Surname
         {
             get
             {
@@ -44,6 +34,7 @@ namespace FirstLaboratory
                 _surname = value;
             }
         }
+
         public DateTime DataTime
         {
             get { return _dataTime; }
@@ -52,6 +43,19 @@ namespace FirstLaboratory
                 _dataTime = value;
             }
         }
+
+        public Person()
+        {
+
+        }
+
+        public Person(string name, string surname, DateTime dateTime)
+        {
+            _name = name;   
+            _surname = surname;
+            _dataTime = dateTime;
+        }        
+
         public int Year
         {
             get 
@@ -64,10 +68,12 @@ namespace FirstLaboratory
                 _dataTime = newDateTime;
             }
         }
+
         public override string ToString()
         {
             return $"Имя:{_name}; Фамилия:{_surname}; Дата рождения:{_dataTime}".ToString();
         }        
+
         public string ToShortString()
         {
             return $"Имя:{_name}; Фамилия:{_surname}".ToString();

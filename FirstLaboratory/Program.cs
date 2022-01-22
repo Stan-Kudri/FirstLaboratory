@@ -45,7 +45,6 @@ var jagged = newTest.JaggedGenerate();
 PrintJaggedArray(jagged);
 PrintOneArray(one);
 PrintTwoArray(two);
-Console.WriteLine($"Время заполнения: Одномерного({newTest.timeOneDimensionArray}), Двумерного({newTest.timeTwoDimensionArray}), Ступенчатого({newTest.timeJaggedArray})");
 
 var student = new Student();
 Console.WriteLine(student.ToShortString());
@@ -55,10 +54,11 @@ Exam[] exam = new Exam[]
     new Exam("Mif", 4, new DateTime(2022,01,18)),
     new Exam("Country", 5, new DateTime(2022,01,19))
 };
-Console.WriteLine(student.Exams.Length + exam.Length);
-student.AddExem(exam);
+Console.WriteLine("Количество сданных экзаменов :{0}",student.Exams.Length + exam.Length);
+student.AddExam(exam);
 Console.WriteLine(student.ToShortString());
 Console.WriteLine(student.ToString());
+Console.WriteLine(student[Education.Вachelor]);
 
 bool DataValidation(int[] array)
 {

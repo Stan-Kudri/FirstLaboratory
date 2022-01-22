@@ -12,18 +12,13 @@ namespace FirstLaboratory.Option1
         public int Mark { get; set; }
         public DateTime ExamDate { get; set; }
 
-        public Exam()
-        {
-            Subject = "Unknown";
-            Mark = 2;
-            ExamDate = new DateTime(2022, 01, 01);
-        }
+        public Exam() : this("Unknown", 2, new DateTime(2022, 01, 01)) { }
 
         public Exam(string subject, int mark, DateTime dateTime)
         {
-            Subject = subject; 
-            Mark = mark;
-            ExamDate = dateTime;
+            this.Subject = subject; 
+            this.Mark = mark;
+            this.ExamDate = dateTime;
         }
 
         public override string ToString()
