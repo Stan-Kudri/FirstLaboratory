@@ -36,10 +36,10 @@ namespace FirstLaboratory.Option1
             get { return _exams; }
             set { _exams = value; }
         }
-
+        
         public Student() : this
             (
-                new Person() { Name = "Sergey", Surname = "Shirokov", DataTime = new DateTime(1998, 01, 15) },
+                CreateDefaulPerson(),
                 Education.Specialist,
                 1,
                 new Exam[] { new Exam() }
@@ -48,10 +48,10 @@ namespace FirstLaboratory.Option1
 
         public Student(Person person, Education education, int groupNumber, Exam[] exems)
         {
-            this._person = person;
-            this._education = education;
-            this._groupNumber = groupNumber;
-            this._exams = exems ;
+            _person = person;
+            _education = education;
+            _groupNumber = groupNumber;
+            _exams = exems ;
         }
 
         public double AverageMark => Exams.Average(x => x.Mark);
@@ -72,24 +72,41 @@ namespace FirstLaboratory.Option1
             Exams = newExem;
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
-            StringBuilder str = new StringBuilder();
-            str.AppendLine(Person.ToString())
-                .AppendLine("Education = " + Education.ToString())
-                .AppendLine("GroupNumber = " + GroupNumber)
-                .AppendLine("Exams:" + String.Join(';', Exams.Select(x => x.Subject)));            
-            return str.ToString();
+            if (!CheckExam())
+                return null;
+            return new StringBuilder()
+                .AppendLine(Person.ToString())
+                .Append("Education = ").AppendLine(Education.ToString())
+                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString())
+                .Append("Exams:").AppendLine(String.Join(';', Exams.Select(x => x.Subject)))
+                .ToString();
         }
 
-        public string ToShortString()
+        public string? ToShortString()
         {
-            StringBuilder str = new StringBuilder();
-            str.AppendLine(Person.ToString())
-                .AppendLine("Education = " + Education.ToString())
-                .AppendLine("GroupNumber = " + GroupNumber)
-                .AppendLine("AvarageMark: " + AverageMark.ToString());
-            return str.ToString();
+            if (!CheckExam())
+                return null;
+            return new StringBuilder()
+                .AppendLine(Person.ToString())
+                .Append("Education = ").AppendLine(Education.ToString())
+                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString())
+                .Append("AvarageMark: ").AppendLine(AverageMark.ToString())
+                .ToString();
         }
+
+        private bool CheckExam()
+        {
+            if(Exams.Length == 0)
+                return false;
+            return true;
+        }
+
+        private static Person CreateDefaulPerson()
+        {
+            return new Person() { Name = "Sergey", Surname = "Shirokov", DataTime = new DateTime(1998, 01, 15) };
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace FirstLaboratory
             _amountElements = column * row;
         }
 
-        public int [] OneDimensionalArray()
+        public (int [], string ) OneDimensionalArray()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();            
@@ -29,12 +29,11 @@ namespace FirstLaboratory
             {
                 array[i] = Random.Shared.Next(-5, 5);
             }
-            stopwatch.Stop();
-            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");            
-            return array;
+            stopwatch.Stop();           
+            return (array, stopwatch.ElapsedTicks.ToString());
         }
 
-        public int[,] TwoDimensionalArray()
+        public (int[,], string)  TwoDimensionalArray()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -47,11 +46,10 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");
-            return array;
+            return (array, stopwatch.ElapsedTicks.ToString());
         }
 
-        public int [][] JaggedGenerate()
+        public (int[][], string)  JaggedGenerate()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -65,8 +63,7 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Скорость заполнения массива : stopwatch.ElapsedTicks.ToString()");
-            return generateArray;
+            return (generateArray, stopwatch.ElapsedTicks.ToString());
         }
     }
 }

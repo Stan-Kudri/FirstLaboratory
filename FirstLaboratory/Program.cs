@@ -42,9 +42,9 @@ var one = newTest.OneDimensionalArray();
 var two = newTest.TwoDimensionalArray();
 var jagged = newTest.JaggedGenerate();
 
-PrintJaggedArray(jagged);
-PrintOneArray(one);
-PrintTwoArray(two);
+PrintJaggedArray(jagged.Item1, jagged.Item2);
+PrintOneArray(one.Item1, one.Item2);
+PrintTwoArray(two.Item1, two.Item2);
 
 var student = new Student();
 Console.WriteLine(student.ToShortString());
@@ -93,18 +93,20 @@ static int[] ArraySize(string str)
 
 static bool intParse(string str) => int.TryParse(str, out int value);
 
-void PrintJaggedArray(int[][] array)
+void PrintJaggedArray(int[][] array, string time)
 {
     foreach (var innerArray in array)
         Console.WriteLine("[{0}]", string.Join(", ", innerArray));
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
 }
 
-void PrintOneArray(int[] array)
+void PrintOneArray(int[] array, string time)
 {
     Console.WriteLine("[{0}]", string.Join(", ", array));
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
 }
 
-void PrintTwoArray(int[,] array)
+void PrintTwoArray(int[,] array, string time)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -118,6 +120,7 @@ void PrintTwoArray(int[,] array)
         }
         Console.WriteLine("]");
     }
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
 }
 
 /*static string[] ArrayElementsSplitByDelimiters(string str)

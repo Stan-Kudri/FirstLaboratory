@@ -16,14 +16,14 @@ namespace FirstLaboratory.Option1
 
         public Exam(string subject, int mark, DateTime dateTime)
         {
-            this.Subject = subject; 
-            this.Mark = mark;
-            this.ExamDate = dateTime;
+            Subject = subject; 
+            Mark = mark;
+            ExamDate = dateTime;
         }
 
         public override string ToString()
         {
-            return $"Предмет:{Subject}; Оценка:{Mark}; Дата сдачи:{ExamDate}".ToString();
+            return $"Предмет:{Subject}; Оценка:{Mark}; Дата сдачи:{ExamDate}";
         }
     }
 }

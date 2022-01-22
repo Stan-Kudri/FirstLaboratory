@@ -71,12 +71,12 @@ namespace FirstLaboratory
 
         public override string ToString()
         {
-            return $"Имя:{_name}; Фамилия:{_surname}; Дата рождения:{_dataTime}".ToString();
+            return $"Имя:{_name}; Фамилия:{_surname}; Дата рождения:{_dataTime}";
         }        
 
         public string ToShortString()
         {
-            return $"Имя:{_name}; Фамилия:{_surname}".ToString();
+            return $"Имя:{_name}; Фамилия:{_surname}";
         }
     }
 }
