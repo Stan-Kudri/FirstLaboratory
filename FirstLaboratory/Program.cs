@@ -1,5 +1,6 @@
 ﻿using FirstLaboratory;
 using FirstLaboratory.Option1;
+using System.Diagnostics;
 using System.Linq;
 
 var person = new Person(
@@ -93,20 +94,20 @@ static int[] ArraySize(string str)
 
 static bool intParse(string str) => int.TryParse(str, out int value);
 
-void PrintJaggedArray(int[][] array, string time)
+void PrintJaggedArray(int[][] array, Stopwatch time)
 {
     foreach (var innerArray in array)
         Console.WriteLine("[{0}]", string.Join(", ", innerArray));
-    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time.ElapsedTicks);
 }
 
-void PrintOneArray(int[] array, string time)
+void PrintOneArray(int[] array, Stopwatch time)
 {
     Console.WriteLine("[{0}]", string.Join(", ", array));
-    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time.ElapsedTicks);
 }
 
-void PrintTwoArray(int[,] array, string time)
+void PrintTwoArray(int[,] array, Stopwatch time)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -120,7 +121,7 @@ void PrintTwoArray(int[,] array, string time)
         }
         Console.WriteLine("]");
     }
-    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time);
+    Console.WriteLine("Время в тактах таймера затраченное на заполнение массива : {0}", time.ElapsedTicks);
 }
 
 /*static string[] ArrayElementsSplitByDelimiters(string str)

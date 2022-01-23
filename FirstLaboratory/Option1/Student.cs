@@ -42,7 +42,7 @@ namespace FirstLaboratory.Option1
                 CreateDefaulPerson(),
                 Education.Specialist,
                 1,
-                new Exam[] { new Exam() }
+                new Exam[] {new Exam()}
             )
         { }
 
@@ -66,6 +66,10 @@ namespace FirstLaboratory.Option1
 
         public void AddExam(params Exam[] addExams)
         {
+            if (addExams == null)
+                throw new ArgumentException(nameof(addExams));
+            if (addExams.Length == 0)
+                throw new ArgumentException("No items to add.");
             var newExem = new Exam[_exams.Length + addExams.Length];
             if(_exams.Length == 0)
             {
@@ -81,38 +85,51 @@ namespace FirstLaboratory.Option1
 
         public override string? ToString()
         {
-            if (!CheckExam())
-                return null;
-            return new StringBuilder()
-                .AppendLine(Person.ToString())
+            StringBuilder str = new StringBuilder();
+            str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
-                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString())
-                .Append("Exams:").AppendLine(String.Join(';', Exams.Select(x => x.Subject)))
-                .ToString();
+                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
+            if (HasExam() && HasNotNullElement())
+                str.Append("Exams:").AppendLine(String.Join(';', Exams.Select(x => x.Subject)));
+            return str.ToString();
         }
 
         public string? ToShortString()
         {
-            if (!CheckExam())
-                return null;
-            return new StringBuilder()
-                .AppendLine(Person.ToString())
+            StringBuilder str = new StringBuilder();
+            str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
-                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString())
-                .Append("AvarageMark: ").AppendLine(AverageMark.ToString())
-                .ToString();
+                .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
+            if (HasExam() && HasNotNullElement())
+                str.Append("AvarageMark: ").AppendLine(AverageMark.ToString());
+            return str.ToString();
         }
 
-        private bool CheckExam()
+        private bool HasExam()
         {
-            if(Exams.Length == 0)
+            if (Exams == null || Exams.Length == 0)
                 return false;
+            return true;
+        }
+
+        private bool HasNotNullElement()
+        {
+            foreach (var exam in Exams)
+            {
+                if (exam == null)
+                    return false;
+            }
             return true;
         }
 
         private static Person CreateDefaulPerson()
         {
-            return new Person() { Name = "Sergey", Surname = "Shirokov", DataTime = new DateTime(1998, 01, 15) };
+            return new Person() 
+            {
+                Name = "Sergey",
+                Surname = "Shirokov",
+                DataTime = new DateTime(1998, 01, 15) 
+            };
         }
 
     }

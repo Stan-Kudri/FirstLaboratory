@@ -20,7 +20,7 @@ namespace FirstLaboratory
             _amountElements = column * row;
         }
 
-        public (int [], string ) OneDimensionalArray()
+        public (int [] array, Stopwatch timeBuildArray) OneDimensionalArray()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();            
@@ -30,10 +30,10 @@ namespace FirstLaboratory
                 array[i] = Random.Shared.Next(-5, 5);
             }
             stopwatch.Stop();           
-            return (array, stopwatch.ElapsedTicks.ToString());
+            return (array, stopwatch);
         }
 
-        public (int[,], string)  TwoDimensionalArray()
+        public (int[,] array, Stopwatch timeBuildArray)  TwoDimensionalArray()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -46,10 +46,10 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            return (array, stopwatch.ElapsedTicks.ToString());
+            return (array, stopwatch);
         }
 
-        public (int[][], string)  JaggedGenerate()
+        public (int[][] array, Stopwatch timeBuildArray)  JaggedGenerate()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -63,7 +63,7 @@ namespace FirstLaboratory
                 }
             }
             stopwatch.Stop();
-            return (generateArray, stopwatch.ElapsedTicks.ToString());
+            return (generateArray, stopwatch);
         }
     }
 }
