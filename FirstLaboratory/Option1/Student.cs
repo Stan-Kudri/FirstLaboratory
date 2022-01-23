@@ -42,16 +42,21 @@ namespace FirstLaboratory.Option1
                 CreateDefaulPerson(),
                 Education.Specialist,
                 1,
-                new Exam[] {new Exam()}
+                new Exam[] { new Exam() }
             )
         { }
 
-        public Student(Person person, Education education, int groupNumber, Exam[] exems)
+        public Student(Person person, Education education, int groupNumber, Exam[] exams)
         {
             _person = person;
             _education = education;
             _groupNumber = groupNumber;
-            _exams = exems ;
+            foreach(var item in exams)
+            {
+                if (item == null)
+                    throw new ArgumentException("Element cannot be Null!");
+            }
+            _exams = exams ;
         }
 
         public double AverageMark => Exams.Average(x => x.Mark);
@@ -83,13 +88,24 @@ namespace FirstLaboratory.Option1
             Exams = newExem;
         }
 
+        public Student DeepCopy()
+        {
+            return new Student()
+            {
+                Person = _person.DeepCopy(),
+                Education = (Education)_education,
+                GroupNumber = _groupNumber,
+                Exams = _exams.Select(x => x.DeepCopy()).ToArray()
+            };
+        }
+
         public override string? ToString()
         {
             StringBuilder str = new StringBuilder();
             str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
                 .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
-            if (HasExam() && HasNotNullElement())
+            if (HaveAnyExam() && HasNotNullElement())
                 str.Append("Exams:").AppendLine(String.Join(';', Exams.Select(x => x.Subject)));
             return str.ToString();
         }
@@ -100,12 +116,17 @@ namespace FirstLaboratory.Option1
             str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
                 .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
-            if (HasExam() && HasNotNullElement())
+            if (HaveAnyExam() && HasNotNullElement())
                 str.Append("AvarageMark: ").AppendLine(AverageMark.ToString());
             return str.ToString();
         }
 
-        private bool HasExam()
+        private void ExamHasException(Exam exam)
+        {
+            
+        }
+
+        private bool HaveAnyExam()
         {
             if (Exams == null || Exams.Length == 0)
                 return false;

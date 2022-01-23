@@ -21,6 +21,16 @@ namespace FirstLaboratory.Option1
             ExamDate = dateTime;
         }
 
+        public Exam DeepCopy()
+        {
+            return new Exam()
+            {
+                Subject = this.Subject,
+                Mark = this.Mark,
+                ExamDate = new DateTime(this.ExamDate.Year, this.ExamDate.Month, this.ExamDate.Day)
+            };
+        }
+
         public override string ToString()
         {
             return $"Предмет:{Subject}; Оценка:{Mark}; Дата сдачи:{ExamDate}";

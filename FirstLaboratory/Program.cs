@@ -35,6 +35,7 @@ int sizeOneDimensionalArray = sizeArray[0] * sizeArray[1];
 foreach (int i in sizeArray)
     Console.WriteLine(i);*/
 
+
 int k = 3;
 int t = 4;
 
@@ -60,6 +61,7 @@ student.AddExam(exam);
 Console.WriteLine(student.ToShortString());
 Console.WriteLine(student.ToString());
 Console.WriteLine(student[Education.Вachelor]);
+
 
 bool DataValidation(int[] array)
 {
