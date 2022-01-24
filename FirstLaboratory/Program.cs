@@ -16,11 +16,13 @@ void ConsoleWritePerson(Person person)
 {
     Console.WriteLine(person.Name);
     Console.WriteLine(person.Surname);
-    Console.WriteLine(person.DataTime);
+    Console.WriteLine(person.Date);
     person.Year = 2010;
     Console.WriteLine(person.Year);
-    Console.WriteLine(person.DataTime);
+    Console.WriteLine(person.Date);
 }
+
+
 
 //Console.WriteLine("Введите количество столбцов и строк массива через разделительный знак:");
 //string strColumnAndRow = Console.ReadLine();

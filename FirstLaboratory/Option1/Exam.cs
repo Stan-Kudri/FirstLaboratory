@@ -25,9 +25,9 @@ namespace FirstLaboratory.Option1
         {
             return new Exam()
             {
-                Subject = this.Subject,
-                Mark = this.Mark,
-                ExamDate = new DateTime(this.ExamDate.Year, this.ExamDate.Month, this.ExamDate.Day)
+                Subject = Subject,
+                Mark = Mark,
+                ExamDate = ExamDate
             };
         }
 

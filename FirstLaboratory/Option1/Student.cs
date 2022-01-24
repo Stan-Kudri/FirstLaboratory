@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstLaboratory.Option1
 {
-    public class Student
+    public class Student: Person
     {
         private Person _person;
         private Education _education;
@@ -51,12 +51,8 @@ namespace FirstLaboratory.Option1
             _person = person;
             _education = education;
             _groupNumber = groupNumber;
-            foreach(var item in exams)
-            {
-                if (item == null)
-                    throw new ArgumentException("Element cannot be Null!");
-            }
-            _exams = exams ;
+            CheckExamForException(exams);
+            _exams = exams ;            
         }
 
         public double AverageMark => Exams.Average(x => x.Mark);
@@ -71,10 +67,9 @@ namespace FirstLaboratory.Option1
 
         public void AddExam(params Exam[] addExams)
         {
-            if (addExams == null)
-                throw new ArgumentException(nameof(addExams));
-            if (addExams.Length == 0)
-                throw new ArgumentException("No items to add.");
+            CheckExamForException(addExams);
+            CheckExamItemsExceprion(addExams);
+            CheckExamForException(_exams);
             var newExem = new Exam[_exams.Length + addExams.Length];
             if(_exams.Length == 0)
             {
@@ -92,11 +87,16 @@ namespace FirstLaboratory.Option1
         {
             return new Student()
             {
-                Person = _person.DeepCopy(),
+                Person = (Person)_person.DeepCopy(),
                 Education = (Education)_education,
                 GroupNumber = _groupNumber,
                 Exams = _exams.Select(x => x.DeepCopy()).ToArray()
             };
+        }
+
+        public override int GetHashCode()
+        {
+            return _person.GetHashCode() + _education.GetHashCode() + _groupNumber.GetHashCode() + _exams.GetHashCode();
         }
 
         public override string? ToString()
@@ -105,7 +105,7 @@ namespace FirstLaboratory.Option1
             str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
                 .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
-            if (HaveAnyExam() && HasNotNullElement())
+            if (HaveAnyExam())
                 str.Append("Exams:").AppendLine(String.Join(';', Exams.Select(x => x.Subject)));
             return str.ToString();
         }
@@ -116,14 +116,26 @@ namespace FirstLaboratory.Option1
             str.AppendLine(Person.ToString())
                 .Append("Education = ").AppendLine(Education.ToString())
                 .Append("GroupNumber = ").AppendLine(GroupNumber.ToString());
-            if (HaveAnyExam() && HasNotNullElement())
+            if (HaveAnyExam())
                 str.Append("AvarageMark: ").AppendLine(AverageMark.ToString());
             return str.ToString();
         }
 
-        private void ExamHasException(Exam exam)
+        private void CheckExamForException(Exam [] exam)
         {
-            
+            if (exam == null)
+                throw new ArgumentException("Exam Not Equal Null!");
+            foreach (var item in exam)
+            {
+                if (item == null)
+                    throw new ArgumentException("Element cannot be Null!");
+            }
+        }
+
+        private void CheckExamItemsExceprion(Exam [] exam)
+        {            
+            if (exam.Length == 0)
+                throw new ArgumentException("No items to add.");
         }
 
         private bool HaveAnyExam()
@@ -133,23 +145,13 @@ namespace FirstLaboratory.Option1
             return true;
         }
 
-        private bool HasNotNullElement()
-        {
-            foreach (var exam in Exams)
-            {
-                if (exam == null)
-                    return false;
-            }
-            return true;
-        }
-
         private static Person CreateDefaulPerson()
         {
             return new Person() 
             {
                 Name = "Sergey",
                 Surname = "Shirokov",
-                DataTime = new DateTime(1998, 01, 15) 
+                Date = new DateTime(1998, 01, 15) 
             };
         }
 
